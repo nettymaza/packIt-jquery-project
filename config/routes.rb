@@ -4,11 +4,11 @@ Rails.application.routes.draw do
     root 'welcome#home'
 
     # Users controller
-    resources :users, :only => [:new, :create]
+    get  '/signup',  to: 'users#new'
+    resources :users
 
     # Sessions Controller
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
     post '/logout' => 'sessions#destroy'
-
 end
