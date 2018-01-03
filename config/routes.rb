@@ -5,10 +5,14 @@ Rails.application.routes.draw do
 
     # Users controller
     get  '/signup',  to: 'users#new'
-    resources :users
+    post '/signup',  to: 'users#create'
+    resources :users, :only => [:new, :create, :show]
 
     # Sessions Controller
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
-    post '/logout' => 'sessions#destroy'
+    delete '/logout' => 'sessions#destroy'
+
+    #Sessios Omniauthable
+    get '/auth/:provider/callback', to: 'sessions#create'
 end
