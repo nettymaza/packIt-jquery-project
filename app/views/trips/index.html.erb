@@ -1,0 +1,7 @@
+<h1>My Trips</h1>
+
+<% @trips.each do |trip| %>
+    <%= trip.name %>
+    <%= trip.duration %>
+    <%= trip.start_date %>
+<% end %>

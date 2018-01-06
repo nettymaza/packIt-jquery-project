@@ -11,8 +11,12 @@ Rails.application.routes.draw do
     # Sessions Controller
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
-    delete '/logout' => 'sessions#destroy'
+    delete '/logout',  to: 'sessions#destroy'
+
 
     #Sessios Omniauthable
     get '/auth/:provider/callback', to: 'sessions#create'
+
+    #Trip routes
+    resources :trips
 end
