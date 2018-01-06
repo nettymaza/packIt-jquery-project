@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
     before_action :set_trip, only: [:show]
+
     def index
         @trips = Trip.all
     end
@@ -13,20 +14,22 @@ class TripsController < ApplicationController
 
     def create
         @trip = Trip.new(trip_params)
+        @trip.user = current_user
+
         if @trip.save
-            redirect_to trips_path
+            redirect_to trip_path @trip.id
         else
-            render :new
-        end 
+            redirect_to :new
+        end
     end
 
     private
 
-        def set_trip
-            @trip = Trip.find(params[:id])
-        end
+    def set_trip
+        @trip = Trip.find(params[:id])
+    end
 
-        def trip_params
-            params.require(:trip).permit(:name, :duration, :start_date)
-        end
+    def trip_params
+        params.require(:trip).permit(:name, :duration, :start_date)
+    end
 end

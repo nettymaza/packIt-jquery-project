@@ -1,28 +1,18 @@
 <h2>Create a Trip</h2>
 
-<form action="/trips" method="POST">
+<%= form_for @trip do |f| %>
 
-    <div>
-        <label for="trip_name">Name:</label>
-        <div>
-            <input type="text" name="trip[:name]" value="<%= @trip.name %>">
-        </div>
-    </div>
-    <div>
-        <label for="trip_duration">Duration:</label>
-        <div>
-            <input type="text" name="trip[:duration]" value="<%= @trip.duration %>">
-        </div>
-    </div>
-    <div>
-        <label for="start_date">Start Date:</label>
-        <div>
-            <input type="date" name="trip[:start_date]" value="<%= @trip.start_date %>">
-        </div>
-    </div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
     <br>
-    <div>
-        <input type="submit" value="Create Trip">
-    </div>
 
-</form>
+    <%= f.label :duration %>
+    <%= f.text_field :duration %>
+    <br>
+
+    <%= f.label :start_date%>
+    <%= f.date_field :start_date %>
+    <br>
+
+    <%= f.submit "Create Trip"%>
+<% end %>

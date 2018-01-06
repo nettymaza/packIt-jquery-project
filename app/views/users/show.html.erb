@@ -1,2 +1,12 @@
-<h1>Hi there  @<%= current_user.name %></h1>
-<%= link_to "Log out", logout_path, method: :delete %>
+<h2>Hi there  @<%= current_user.name %></h2>
+<div class="links">
+    <div class="">
+        <%= link_to "Create Trip", new_trip_path %>
+    </div>
+    <div class="">
+        <%= link_to "My Trips", trips_path %>
+    </div>
+    <div class="">
+        <%= link_to "Log out", logout_path, method: :delete %>
+    </div>
+</div>

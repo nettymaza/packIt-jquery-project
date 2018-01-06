@@ -13,7 +13,13 @@
     <%= f.submit "Log in"%>
 <% end %>
 
-<p><%= link_to('Login via Github', '/auth/github') %></p>
-
-
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<div class="links">
+    <br>
+    <div>
+        <%= link_to('Login via Github', '/auth/github') %>
+    </div>
+    <br>
+    <div>
+        <%= link_to "Create Account", signup_path %>
+    </div>
+</div>

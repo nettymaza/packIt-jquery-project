@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :check_for_user, only: [:new, :create]
 
     def new
     end
@@ -36,6 +37,14 @@ class SessionsController < ApplicationController
     def destroy
         log_out
         redirect_to login_path
+    end
+
+    private
+
+    def check_for_user
+        if current_user
+            redirect_to user_path current_user.id
+        end
     end
 
 end
