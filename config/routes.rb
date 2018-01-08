@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'packing_list_items/create'
+
     # Root 'home' controller
     root 'welcome#home'
 
     # Users controller
     get  '/signup',  to: 'users#new'
     post '/signup',  to: 'users#create'
-    resources :users, :only => [:new, :create, :show]
+    resources :users, :only => [:show]
 
     # Sessions Controller
     get '/login' => 'sessions#new'
@@ -19,4 +21,10 @@ Rails.application.routes.draw do
 
     #Trip routes
     resources :trips
+
+    #Nested List/Items routes
+    resources :packing_lists do
+      resources :packing_list_items
+    end
+
 end
