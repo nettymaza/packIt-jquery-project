@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show]
+  before_action :set_trip, only: [:show, :edit, :update]
 
   def index
     @trips = Trip.all
@@ -13,17 +13,33 @@ class TripsController < ApplicationController
   end
 
   def create
-    packing_list = PackingList.create({name: "My Packing List"})
     @trip = Trip.new(trip_params)
     @trip.user = current_user
-    @trip.packing_list = packing_list
 
     if @trip.save
       redirect_to trip_path @trip.id
     else
-      redirect_to :new
+      render 'new'
     end
   end
+
+  def edit
+  end
+
+  def update
+    if @trip.update(trip_params)
+      redirect_to trip_path(@trip)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @trip = Song.find(params[:id]).destroy
+    redirect_to trips_path
+
+  end
+
 
   private
 
@@ -32,6 +48,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name, :duration, :start_date)
+    params.require(:trip).permit(:name, :duration, :start_date, items: [:name])
   end
+
 end

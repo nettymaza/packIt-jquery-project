@@ -2,17 +2,24 @@
 
 <%= form_for @trip do |f| %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
+    <%= render 'shared/trip_error_messages' %>
 
-    <%= f.label :duration %>
-    <%= f.text_field :duration %>
-    <br>
 
-    <%= f.label :start_date%>
-    <%= f.date_field :start_date %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
     <br>
+    <div class="field">
+      <%= f.label :duration %><br>
+      <%= f.text_field :duration %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :start_date %><br>
+      <%= f.date_field :start_date %>
+    </div>
+    <br>
+    <%= f.submit %>
 
-    <%= f.submit "Create Trip"%>
 <% end %>

@@ -1,0 +1,24 @@
+<h2>Edit Trip</h2>
+
+<%= form_for(@trip) do |f| %>
+
+  <%= render 'shared/trip_error_messages' %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :duration %><br>
+    <%= f.text_field :duration %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_field :start_date %>
+  </div>
+  <br>
+  <%= f.submit %>
+
+<% end %>
