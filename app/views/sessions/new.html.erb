@@ -1,25 +1,28 @@
-<h1>Log in</h1>
+<h1>Log In</h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
 
+  <div class="field">
     <%= f.label :email %>
     <%= f.email_field :email %>
-    <br>
-
+  </div>
+  <br>
+  <div class="">
     <%= f.label :password %>
     <%= f.password_field :password %>
-    <br>
+  </div>
+  <br>
 
-    <%= f.submit "Log in"%>
+  <%= f.submit "Log in"%>
 <% end %>
 
 <div class="links">
-    <br>
-    <div>
-        <%= link_to('Login via Github', '/auth/github') %>
-    </div>
-    <br>
-    <div>
-        <%= link_to "Create Account", signup_path %>
-    </div>
+  <br>
+  <div>
+    <%= link_to('Login via Github', '/auth/github') %>
+  </div>
+  <br>
+  <div>
+    <%= link_to "Create Account", signup_path %>
+  </div>
 </div>
