@@ -10,37 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110231338) do
+ActiveRecord::Schema.define(version: 20180111204725) do
 
-  create_table "packing_list_items", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "name"
-    t.integer "packing_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "packing_lists", force: :cascade do |t|
-    t.string "name"
+    t.integer "trip_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_packing_lists_on_item_id"
+    t.index ["trip_id"], name: "index_packing_lists_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
     t.string "name"
     t.string "duration"
-    t.date "start_date"
+    t.string "start_date"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "packing_list_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
 end

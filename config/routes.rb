@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'packing_list_items/create'
-
     # Root 'home' controller
     root 'welcome#home'
 
@@ -23,8 +21,8 @@ Rails.application.routes.draw do
     resources :trips
 
     #Nested List/Items routes
-    resources :packing_lists do
-      resources :packing_list_items
-    end
+    # resources :packing_lists do
+    #   resources :packing_list_items
+    # end
 
 end
