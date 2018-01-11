@@ -5,20 +5,25 @@
 
     <%= render 'shared/error_messages' %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
     <br>
-
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </div>
     <br>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
     <br>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
     <br>
 
     <%= f.submit "Create Account"%>
