@@ -1,5 +1,4 @@
 class PackingList < ApplicationRecord
-  has_one :trip
-  has_one :user, through: :trip
-  has_many :packing_list_items
+  belongs_to :trip
+  belongs_to :item
 end
