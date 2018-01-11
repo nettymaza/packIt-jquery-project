@@ -1,7 +1,7 @@
 <h1>My Trips</h1>
 
-<% @trips.each do |trip| %>
-    <%= trip.name %>
-    <%= trip.duration %>
-    <%= trip.start_date %>
-<% end %>
+  <% current_user.trips.each do |trip| %>
+  <ul>
+    <li> <%= link_to trip.name, trip_path(trip.id) %> | Start Date: <%= trip.start_date %></li>
+  </ul>
+  <% end %>

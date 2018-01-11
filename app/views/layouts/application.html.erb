@@ -28,6 +28,7 @@
             <footer class="branding">
                 <div class="links">
                     <% if logged_in? %>
+                        
                         <%= link_to "Log out", logout_path, method: :delete %>
                     <% elsif !on_login_page? %>
                         <%= link_to "Log in", login_path %>

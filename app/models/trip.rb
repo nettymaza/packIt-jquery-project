@@ -1,9 +1,8 @@
 class Trip < ApplicationRecord
-  has_one :packing_list
-  has_one :user, through: :packing_list
-end
+  belongs_to :user
+  belongs_to :packing_list
 
-# def save
-#     self.packing_list = PackingList.new
-#     super
-# end
+  validates :name, presence: true
+  validates :duration, presence: true
+  validates :start_date, presence: true
+end
