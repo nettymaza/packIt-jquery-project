@@ -6,19 +6,14 @@ class Trip < ApplicationRecord
   validates :name, presence: true
   validates :duration, presence: true
   validates :start_date, presence: true
+  accepts_nested_attributes_for :items
 
 
-  def item=(item)
-    item.each do |list_item|
-      if !list_item[:name].empty?
-        if new_list_item = Item.find_by(name: list_item[:name])
-          self.list_item << new_item
-        else
-          self.list_item.build(name: list_item[:name])
-        end
-      end
+
+  def items_attributes=(item_attributes)
+    item_attributes.values.each do |item_attribute|
+      new_item = Item.find_or_create_by(item_attribute)
+      self.items << new_item
     end
   end
-
-
 end

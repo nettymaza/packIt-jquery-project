@@ -37,7 +37,6 @@ class TripsController < ApplicationController
   def destroy
     @trip = Song.find(params[:id]).destroy
     redirect_to trips_path
-
   end
 
 
@@ -48,7 +47,16 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name, :duration, :start_date, items: [:name])
+    params.require(:trip).permit(:name, :duration, :start_date, :item_ids => [], items_attributes: [:name])
   end
 
 end
+
+
+
+ # "trip"=>{
+ #   "name"=>"Test Trip",
+ #   "duration"=>"Test Trip",
+ #   "start_date"=>"2018-01-16",
+ #   "items"=>{"name"=>""}
+ # },
