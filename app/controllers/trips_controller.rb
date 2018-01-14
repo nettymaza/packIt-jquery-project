@@ -2,7 +2,11 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update]
 
   def index
-    @trips = Trip.all
+    if params[:user_id]
+      @trips = Trip.find(params[:user_id])
+    else
+      @trips = Trip.all
+    end
   end
 
   def show
@@ -51,12 +55,3 @@ class TripsController < ApplicationController
   end
 
 end
-
-
-
- # "trip"=>{
- #   "name"=>"Test Trip",
- #   "duration"=>"Test Trip",
- #   "start_date"=>"2018-01-16",
- #   "items"=>{"name"=>""}
- # },

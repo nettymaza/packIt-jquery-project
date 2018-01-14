@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     # Users controller
     get  '/signup',  to: 'users#new'
     post '/signup',  to: 'users#create'
-    resources :users, :only => [:show]
+
+    # Nested Routes
+    resources :users, :only => [:show] do
+      resources :trips, :only => [:show, :index]
+    end
 
     # Sessions Controller
     get '/login' => 'sessions#new'
@@ -19,10 +23,4 @@ Rails.application.routes.draw do
 
     #Trip routes
     resources :trips
-
-    #Nested List/Items routes
-    # resources :packing_lists do
-    #   resources :packing_list_items
-    # end
-
 end

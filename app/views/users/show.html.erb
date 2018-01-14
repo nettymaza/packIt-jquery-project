@@ -2,7 +2,7 @@
 
 <div class="links">
   <div class="">
-    <%= link_to "View Trips", trips_path %>
+    <%= link_to "View Trips", user_trips_path(current_user.id) %>
   </div>
   <div class="">
     <%= link_to "New Trip", new_trip_path %>

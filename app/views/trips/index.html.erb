@@ -1,7 +1,13 @@
 <h1>My Trips</h1>
 
+<% if current_user.trips.count > 0 %>
   <% current_user.trips.each do |trip| %>
-  <ul>
-    <li> <%= link_to trip.name, trip_path(trip.id) %> | Start Date: <%= trip.start_date %></li>
-  </ul>
+    <ul>
+      <li> <%= link_to trip.name, user_trip_path(current_user.id, trip.id) %> | Start Date: <%= trip.start_date %></li>
+    </ul>
   <% end %>
+<% else %>
+  <div class="">
+    <%= link_to "Create Trip", new_trip_path %>
+  </div>
+<% end %>
