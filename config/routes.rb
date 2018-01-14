@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'items/create'
+
     # Root 'home' controller
     root 'welcome#home'
 
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
 
     # Nested Routes
     resources :users, :only => [:show] do
-      resources :trips, :only => [:show, :index]
+      resources :trips, :only => [:new, :create, :show, :index]
     end
 
     # Sessions Controller
@@ -22,5 +24,7 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback', to: 'sessions#create'
 
     #Trip routes
-    resources :trips
+    resources :trips do
+      resources :items
+    end
 end

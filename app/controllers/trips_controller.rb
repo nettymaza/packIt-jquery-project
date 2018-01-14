@@ -10,6 +10,7 @@ class TripsController < ApplicationController
   end
 
   def show
+    @item = @trip.items.build
   end
 
   def new
