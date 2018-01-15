@@ -1,0 +1,31 @@
+<%= form_for ([current_user, trip]) do |f| %>
+    <%= render 'shared/trip_error_messages' %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :duration %><br>
+      <%= f.text_field :duration %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.label :start_date %><br>
+      <%= f.date_field :start_date %>
+    </div>
+    <br>
+    <br>
+    <div class="field">
+      <h3>Create Packing List</h3>
+      <h5><i>Add Items to List</i></h5>
+      <br>
+      <% 5.times.each do %>
+        <%= f.fields_for :items, trip.items.build do |trip_fields| %>
+          <%= trip_fields.text_field :name %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= f.submit %>
+<% end %>

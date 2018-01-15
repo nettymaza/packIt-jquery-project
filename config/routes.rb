@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     # Nested Routes
     resources :users, :only => [:show] do
-      resources :trips, :only => [:new, :create, :show, :index]
+      resources :trips, :only => [:new, :create, :show, :index, :edit, :update]
     end
 
     # Sessions Controller
@@ -24,7 +24,5 @@ Rails.application.routes.draw do
     get '/auth/:provider/callback', to: 'sessions#create'
 
     #Trip routes
-    resources :trips do
-      resources :items
-    end
+    resources :trips
 end

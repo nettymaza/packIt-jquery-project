@@ -12,13 +12,19 @@ def items_attributes=(item_attributes)
 end
 
 
-<div class="field">
-  <h3>Create Packing List</h3>
-  <h5><i>Add Items to List</i></h5>
-  <br>
-  <% 3.times.each do %>
-    <%= f.fields_for :items, @trip.items.build do |trip_fields| %>
-      <%= trip_fields.text_field :name %>
-    <% end %>
+<%= f.label "Category" %>
+  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+
+  <!-- Form to add new Comment -->
+
+<h3>Leave a Comment:</h3>
+<%= form_for @post.comments.build do |f| %>
+  <%= f.text_area :content %><br>
+  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "Choose User" %>
+  <%= f.hidden_field :post_id %>
+  <%= f.fields_for :user, @post.comments.last.build_user do |user_fields| %>
+    <%= user_fields.text_field :username %>
   <% end %>
-</div>
+<br>
+<br>
+<%= f.submit %>
