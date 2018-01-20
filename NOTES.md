@@ -28,3 +28,20 @@ end
 <br>
 <br>
 <%= f.submit %>
+
+flash.now[:notice] = 'Invalid email/password combination'
+render 'new'
+
+
+<% elsif !on_login_page? %>
+    <%= link_to "Log in", login_path %>
+
+
+
+      def index
+        if params[:user_id]
+          @trips = Trip.find(params[:user_id])
+        else
+          @trips = Trip.all
+        end
+      end

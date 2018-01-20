@@ -1,9 +1,11 @@
 @media screen {
   /* --- Reset Styles --- */
   * {
-    list-style: none;
     margin: 0;
     padding: 0;
+    list-style: none;
+
+
   }
 
   html, body {
@@ -11,12 +13,27 @@
     width: 100%;
   }
 
+    /* --- Error Styles --- */
+
+  .field li {
+    color: red;
+    font-size: 16px;
+    font-style: italic;
+
+  }
+
+  .notice {
+    color: red;
+    font-size: 16px;
+    font-style: italic;
+  }
+
   /* --- Welcome Page Styles --- */
   body {
     background-image: url('../images/landscape.jpg');
     background-size: cover;
     color: #333;
-    font-family: 'Quicksand', sans-serif;
+    font-family: font-family: 'Arimo', sans-serif;
     line-height: 18px;
     padding: 40px 0;
   }
@@ -103,9 +120,10 @@
     margin-right: 20px;
   }
 
-  .header .userInfo {
 
-  }
+.field li {
+  color: red;
+}
 
   .main {
     overflow: hidden;

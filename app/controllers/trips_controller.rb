@@ -2,11 +2,7 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update]
 
   def index
-    if params[:user_id]
-      @trips = Trip.find(params[:user_id])
-    else
-      @trips = Trip.all
-    end
+    @trips = Trip.all
   end
 
   def show
@@ -40,8 +36,8 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    @trip = Song.find(params[:id]).destroy
-    redirect_to trips_path
+    @trip = Trip.find(params[:id]).destroy
+    redirect_to trips_url
   end
 
 

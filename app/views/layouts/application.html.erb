@@ -2,6 +2,7 @@
 
 <html class="no-js" lang="en">
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
         <%= csrf_meta_tags %>
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -31,8 +32,6 @@
                 <div class="links">
                     <% if logged_in? %>
                         <%= link_to "Log out", logout_path, method: :delete %>
-                    <% elsif !on_login_page? %>
-                        <%= link_to "Log in", login_path %>
                     <% end %>
                 </div>
                 <small>&copy; 2018 <strong>Pack-it!</strong></small>

@@ -1,5 +1,12 @@
 <h1>Log In</h1>
 
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+  <br>
+
 <%= form_for(:session, url: login_path) do |f| %>
 
   <div class="field">
@@ -7,7 +14,7 @@
     <%= f.email_field :email %>
   </div>
   <br>
-  <div class="">
+  <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
