@@ -13,10 +13,22 @@
       if !item_attribute.empty?
         new_item = Item.find_or_create_by(item_attribute)
         self.items << new_item
-      else
-
       end
     end
+  end
+
+
+  STATUS = {
+    :incomplete => 0,
+    :complete => 1
+  }
+
+  def complete?
+    self.status == STATUS[:complete]
+  end
+
+  def incomplete?
+    self.status == STATUS[:incomplete]
   end
 
 end

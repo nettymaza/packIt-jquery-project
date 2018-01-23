@@ -29,7 +29,9 @@ class TripsController < ApplicationController
 
   def update
     if @trip.update(trip_params)
-      redirect_to trip_path(@trip)
+      if trip_params['status']
+        redirect_to trip_path(@trip)
+      end
     else
       render 'edit'
     end
@@ -48,7 +50,7 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name, :duration, :start_date, :item_ids => [], items_attributes: [:name])
+    params.require(:trip).permit(:name, :duration, :start_date, :status, :item_ids => [], items_attributes: [:name])
   end
 
 end

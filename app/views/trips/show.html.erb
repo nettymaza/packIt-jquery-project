@@ -13,6 +13,13 @@
 <% end %>
 <br>
 
+<div class="">
+  <%= form_for ([current_user, @trip]) do |f| %>
+    <h4><%= f.label "Complete?" %></h4> 
+    <%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
+  <% end %>
+</div>
+<br>
 
 <div class="">
   <%= link_to 'Edit Trip', edit_trip_path(@trip) %>

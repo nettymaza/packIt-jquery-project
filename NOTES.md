@@ -1,47 +1,23 @@
-
-def items_attributes=(item_attributes)
-  item_attributes.each do |item_attribute|
-    if !item_attribute.empty?
-      if new_item = Item.find_by(item_attribute)
-      self.items << new_item
-      else
-      self.items.build(:items_attribute => [:name])
-      end
-    end
-  end
-end
-
-
-<%= f.label "Category" %>
-  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
-
-  <!-- Form to add new Comment -->
-
-<h3>Leave a Comment:</h3>
-<%= form_for @post.comments.build do |f| %>
-  <%= f.text_area :content %><br>
-  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "Choose User" %>
-  <%= f.hidden_field :post_id %>
-  <%= f.fields_for :user, @post.comments.last.build_user do |user_fields| %>
-    <%= user_fields.text_field :username %>
+<% if !params[:author].blank? %>
+  <% @posts = Post.where(author: params[:author]) %>
+<% elsif !params[:date].blank? %>
+  <% if params[:date] == "Today" %>
+    <% @posts = Post.where("created_at >=?", Time.zone.today.beginning_of_day) %>
+  <% else %>
+    <% @posts = Post.where("created_at <?", Time.zone.today.beginning_of_day) %>
   <% end %>
-<br>
-<br>
-<%= f.submit %>
-
-flash.now[:notice] = 'Invalid email/password combination'
-render 'new'
+<% end %>
 
 
-<% elsif !on_login_page? %>
-    <%= link_to "Log in", login_path %>
+<div>
+  <h3>Filter Trips:</h3>
+  <%= form_tag("/trips", method: "get") do %>
+    <%= select_tag "Status", options_for_select(["Past Trips", "Upcoming Trips"]), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
 
 
-
-      def index
-        if params[:user_id]
-          @trips = Trip.find(params[:user_id])
-        else
-          @trips = Trip.all
-        end
-      end
+<%= form_for ([current_user, trip]) do |f| %>
+<%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
+<% end %>

@@ -1,9 +1,16 @@
 <h1>My Trips</h1>
 
+<br>
+<br>
+
 <% if current_user.trips.count > 0 %>
   <% current_user.trips.each do |trip| %>
     <ul>
-        <li> <%= link_to trip.name, user_trip_path(current_user.id, trip.id) %> | Start Date: <%= trip.start_date %></li>
+      <div class="trip">
+        <li>
+          <%= link_to trip.name, user_trip_path(current_user.id, trip.id) %> | Start Date: <%= trip.start_date %>
+        </li>
+      </div>
     </ul>
   <% end %>
 <% else %>
@@ -11,3 +18,14 @@
     <%= link_to "Create Trip", new_trip_path %>
   </div>
 <% end %>
+
+<br>
+<br>
+
+<div>
+  <h3>View by:</h3>
+      <%= form_tag("/trips", method: "get") do %>
+        <%= select_tag "Status", options_for_select(["Past Trips", "Upcoming Trips"]), include_blank: true %>
+      <%= submit_tag "Filter" %>
+      <% end %>
+</div>
