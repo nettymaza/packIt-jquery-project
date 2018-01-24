@@ -2,7 +2,12 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update]
 
   def index
-    @trips = Trip.all
+  @trips = Trip.all.where(user: current_user)
+    if params[:status] == "Past"
+      @trips = Trip.complete.where(user: current_user)
+    elsif params[:status] == "Upcoming"
+      @trips = Trip.incomplete.where(user: current_user)
+    end
   end
 
   def show

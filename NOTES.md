@@ -21,3 +21,14 @@
 <%= form_for ([current_user, trip]) do |f| %>
 <%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
 <% end %>
+
+
+if !params[:status].blank?
+  if params[:status] == "Past"
+    @trips = Trip.complete
+  else
+    @trips = Trip.incomplete
+  end
+else
+  @trips = Trip.all
+end

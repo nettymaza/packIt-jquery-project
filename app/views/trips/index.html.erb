@@ -3,8 +3,8 @@
 <br>
 <br>
 
-<% if current_user.trips.count > 0 %>
-  <% current_user.trips.each do |trip| %>
+<% if @trips.count > 0 %>
+  <% @trips.each do |trip| %>
     <ul>
       <div class="trip">
         <li>
@@ -25,7 +25,7 @@
 <div>
   <h3>View by:</h3>
       <%= form_tag("/trips", method: "get") do %>
-        <%= select_tag "Status", options_for_select(["Past Trips", "Upcoming Trips"]), include_blank: true %>
+        <%= select_tag "status", options_for_select(["Past", "Upcoming"]), include_blank: true %>
       <%= submit_tag "Filter" %>
       <% end %>
 </div>

@@ -1,4 +1,4 @@
-  class Trip < ApplicationRecord
+class Trip < ApplicationRecord
   belongs_to :user
   has_many :packing_lists
   has_many :items, through: :packing_lists, :dependent => :destroy
@@ -30,5 +30,15 @@
   def incomplete?
     self.status == STATUS[:incomplete]
   end
+
+ #Active Record Model Class Methods
+
+   def self.complete
+     where("status = '1'")
+   end
+
+   def self.incomplete
+     where("status = '0'")
+   end
 
 end
