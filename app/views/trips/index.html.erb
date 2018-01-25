@@ -24,8 +24,8 @@
 
 <div>
   <h3>View by:</h3>
-      <%= form_tag("/trips", method: "get") do %>
-        <%= select_tag "status", options_for_select(["Past", "Upcoming"]), include_blank: true %>
-      <%= submit_tag "Filter" %>
-      <% end %>
+    <%= form_tag("/trips", method: "get") do %>
+      <%= select_tag "status", options_for_select(["Past", "Upcoming"]), include_blank: true %>
+    <%= submit_tag "Filter" %>
+    <% end %>
 </div>
