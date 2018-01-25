@@ -13,6 +13,8 @@
   <body>
     <div class="wrapper">
       <div class="header">
+        <div class="logo">
+        </div>
         <div class="userInfo">
           <% if logged_in? %>
             <i><h4>
@@ -27,6 +29,8 @@
       <footer class="branding">
         <div class="links">
           <% if logged_in? %>
+            <%= link_to 'Back', 'javascript:history.back()'  %>
+            <br>
             <%= link_to "Log out", logout_path, method: :delete %>
           <% end %>
         </div>
