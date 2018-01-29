@@ -35,9 +35,6 @@ class TripsController < ApplicationController
   def update
     if @trip.update(trip_params)
       redirect_to trip_path(@trip)
-        if trip_params['status']
-          redirect_to trip_path(@trip)
-        end
     else
       render 'edit'
     end
