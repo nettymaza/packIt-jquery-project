@@ -41,4 +41,10 @@ class Trip < ApplicationRecord
      where("status = '0'")
    end
 
+   def self.by_name
+     where("name LIKE ?", #{params[:name]})
+   end
+
+   end
+
 end
