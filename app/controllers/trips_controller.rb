@@ -7,6 +7,8 @@ class TripsController < ApplicationController
       @trips = Trip.complete.where(user: current_user)
     elsif params[:status] == "Upcoming"
       @trips = Trip.incomplete.where(user: current_user)
+    elsif params[:name]
+      @trips = Trip.by_name(params[:name]).where(user: current_user)
     end
   end
 

@@ -29,3 +29,21 @@
     <%= submit_tag "Filter" %>
     <% end %>
 </div>
+
+<!-- <div>
+
+  <h3>Find by Name:</h3>
+  <%= form_tag("/trips", method: "get") do %>
+  <%= text_field_tag :name, params[:name] %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+</div> -->
+
+<div>
+  <h3>Find by Name:</h3>
+  <%= form_tag("/trips", method: "get") do %>
+    <%= select_tag "name", options_from_collection_for_select(Trip.where(user: current_user), "name", "name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
