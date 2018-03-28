@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get  '/signup',  to: 'users#new'
     post '/signup',  to: 'users#create'
 
-    # Nested Routes
+    # Nested Resource Routes
     resources :users, :only => [:show] do
       resources :trips, :only => [:new, :create, :show, :index, :edit, :update]
     end
@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 
     #Trip routes
     resources :trips
+    get '/trips/:id/data.json', to: 'trips#single_trip_json'
 end

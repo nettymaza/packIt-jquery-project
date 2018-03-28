@@ -17,15 +17,14 @@
     </div>
     <br>
     <br>
-    <div class="field">
-      <h3>Create Packing List</h3>
+    <!-- <div class="field">
+      <h3>Packing List</h3>
       <h5><i>Add Items to List</i></h5>
-      <br>
       <% 5.times.each do %>
         <%= f.fields_for :items, trip.items.build do |trip_fields| %>
-          <%= trip_fields.text_field :name %>
+          <%= trip_fields.text_field :name %><br>
         <% end %>
       <% end %>
-    </div>
+    </div> -->
     <%= f.submit %>
 <% end %>

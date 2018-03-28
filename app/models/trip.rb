@@ -1,4 +1,4 @@
-class Trip < ApplicationRecord
+class Trip < ApplicationRecord  
   belongs_to :user
   has_many :packing_lists
   has_many :items, through: :packing_lists, :dependent => :destroy

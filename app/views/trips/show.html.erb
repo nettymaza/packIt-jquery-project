@@ -1,30 +1,38 @@
-<h1><%= @trip.name %></h1>
-<h3>Start Date: <%= @trip.start_date %></h3>
-<h3>Duration: <%= @trip.duration %></h3>
+<div>
+  <h1 class="tripName"><%= @trip.name %></h1>
+</div>
 
-<h2>Packing List</h2>
+<!-- <div class="">
+  <h2>Packing List</h2>
 
-<% if @trip.items.count > 0 %>
-  <ul>
-    <% @trip.items.each do |item| %>
-      <li><%= item.name %> </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @trip.items.count > 0 %>
+    <ul>
+      <% @trip.items.each do |item| %>
+        <li><%= item.name %> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <br>
 
 <div class="">
   <%= form_for ([current_user, @trip]) do |f| %>
-    <h4><%= f.label "Complete?" %></h4>
+    <h4><%= f.label "Is this Trip Complete?" %></h4>
     <%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
   <% end %>
 </div>
 <br>
 
 <div class="">
-  <%= link_to 'Edit Trip', edit_trip_path(@trip) %>
-</div>
+  <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to "Delete", @trip, method: :delete %>
+</div> -->
+
 <br>
-<div class="">
-   <%= link_to "Delete", @trip, method: :delete %>
-</div>
+<hr>
+<h3>Your other trips</h3>
+<% current_user.trips.each do |trip| %>
+  <% if trip != @trip %>
+    <a href="/trips/<%= trip.id %>/data.json"><%= trip.name %></a>
+  <% end %>
+<% end %>

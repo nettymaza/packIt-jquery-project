@@ -2,7 +2,8 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update]
 
   def index
-  @trips = Trip.all.where(user: current_user)
+    @trips = Trip.all.where(user: current_user)
+
     if params[:status] == "Past"
       @trips = Trip.complete.where(user: current_user)
     elsif params[:status] == "Upcoming"
@@ -10,10 +11,16 @@ class TripsController < ApplicationController
     elsif params[:name]
       @trips = Trip.by_name(params[:name]).where(user: current_user)
     end
+
+    render :json => @trips
   end
 
   def show
     @item = @trip.items.build
+  end
+
+  def single_trip_json
+    render :json => Trip.find(params[:id])
   end
 
   def new
