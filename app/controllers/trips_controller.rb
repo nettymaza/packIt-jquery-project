@@ -4,15 +4,19 @@ class TripsController < ApplicationController
   def index
     @trips = Trip.all.where(user: current_user)
 
-    if params[:status] == "Past"
-      @trips = Trip.complete.where(user: current_user)
-    elsif params[:status] == "Upcoming"
-      @trips = Trip.incomplete.where(user: current_user)
-    elsif params[:name]
-      @trips = Trip.by_name(params[:name]).where(user: current_user)
+    respond_to do |f|
+        f.json { render json: @trips}
     end
 
-    render :json => @trips
+    # if params[:status] == "Past"
+    #   @trips = Trip.complete.where(user: current_user)
+    # elsif params[:status] == "Upcoming"
+    #   @trips = Trip.incomplete.where(user: current_user)
+    # elsif params[:name]
+    #   @trips = Trip.by_name(params[:name]).where(user: current_user)
+    # end
+
+    # render :json => @trips
   end
 
     def show
@@ -23,10 +27,10 @@ class TripsController < ApplicationController
         end
     end
 
-  def trip_data
-    @trip = Trip.find(params[:id])
-    render json: @trip.to_json(only: [:id, :name, :duration, :start_date])
-  end
+    # def trip_data
+    #     @trip = Trip.find(params[:id])
+    #     render json: @trip.to_json(only: [:id, :name, :duration, :start_date])
+    # end
 
   def new
     @trip = Trip.new

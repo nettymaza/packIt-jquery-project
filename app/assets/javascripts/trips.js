@@ -3,24 +3,34 @@ $(document).ready(function () {
 })
 
 function getTripsData(e) {
-  e.preventDefault()
-
-  // Remove all content from .trips
-  $('.trips').html('')
-
-  $.get(this.href, function(tripsData) {
-    renderTripsData(tripsData)
-  })
+    e.preventDefault()
+    $('#trips-container').html('')
+    $.get(this.href, function(tripsData) {
+        renderTripsData(tripsData)
+    })
 }
 
 function renderTripsData(tripsData) {
-  tripsData.forEach(function(trip, tripIndex) {
+    tripsData.forEach(trip => {
+        let newTrip = new Trip(trip)
+        console.log(newTrip)
+        let tripHtml = newTrip.indexTemplate()
+        $('#trips-container').append(tripHtml)
+    })
+}
 
-    $('.trips').append(`
-      <a href="/trips/${ trip.id }">
-        <h3>${ trip.name }</h3>
-      </a>
-      `
-    )
-  })
+function Trip(trip) {
+    this.id = trip.id
+    this.name = trip.name
+    this.duration = trip.duration
+    this.start_date = trip.start_date
+}
+
+Trip.prototype.indexTemplate = function() {
+    let tripHtml = `
+    <a href="/trips/${ this.id }">
+      <h3>${ this.name }</h3>
+    </a>
+    `
+    return tripHtml
 }
