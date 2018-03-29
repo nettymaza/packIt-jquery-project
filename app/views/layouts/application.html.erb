@@ -28,9 +28,7 @@
       <footer class="branding">
         <div class="links">
           <% if logged_in? %>
-            <%= link_to 'Back', 'javascript:history.back()'  %>
-            <br>
-            <%= link_to "Log out", logout_path, method: :delete %>
+            <%= link_to 'Back', 'javascript:history.back()' %> | <%= link_to "Log out", logout_path, method: :delete %>
           <% end %>
         </div>
         <small>&copy; 2018 <strong>Pack-it!</strong></small>

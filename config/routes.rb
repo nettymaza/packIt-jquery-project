@@ -25,5 +25,5 @@ Rails.application.routes.draw do
 
     #Trip routes
     resources :trips
-    get '/trips/:id/data.json', to: 'trips#single_trip_json'
+    get 'trips/:id/trip_data', to: 'trips#trip_data'
 end

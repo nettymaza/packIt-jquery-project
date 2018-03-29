@@ -1,6 +1,29 @@
-<div>
-  <h1 class="tripName"><%= @trip.name %></h1>
+<div class="links">
+    <a href="#" class="js-next" data-id="<%=@trip.id%>">Next Trip</a>
 </div>
+
+<h1 class="tripName"><%= @trip.name %></h1>
+<h3 class="tripDuration"><%= @trip.duration %></h3>
+<h3 class="tripStartdate"><%= @trip.start_date %></p>
+
+<script type="text/javascript" charset="utf-8">
+
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/trips/" + nextId + ".json", function(data) {
+        var trip = data
+
+        $(".tripName").text(trip["name"]);
+        $(".tripDuration").text(trip["duration"]);
+        $(".tripStartdate").text(trip["start_date"]);
+
+    });
+  });
+});
+
+</script>
+
 
 <!-- <div class="">
   <h2>Packing List</h2>
@@ -28,11 +51,11 @@
   <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to "Delete", @trip, method: :delete %>
 </div> -->
 
-<br>
+<!-- <br>
 <hr>
 <h3>Your other trips</h3>
 <% current_user.trips.each do |trip| %>
   <% if trip != @trip %>
     <a href="/trips/<%= trip.id %>/data.json"><%= trip.name %></a>
   <% end %>
-<% end %>
+<% end %> -->

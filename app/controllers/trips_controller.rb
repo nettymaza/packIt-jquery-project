@@ -15,12 +15,17 @@ class TripsController < ApplicationController
     render :json => @trips
   end
 
-  def show
-    @item = @trip.items.build
-  end
+    def show
+        @item = @trip.items.build
+        respond_to do |format|
+            format.html { render :show }
+            format.json { render json: @trip}
+        end
+    end
 
-  def single_trip_json
-    render :json => Trip.find(params[:id])
+  def trip_data
+    @trip = Trip.find(params[:id])
+    render json: @trip.to_json(only: [:id, :name, :duration, :start_date])
   end
 
   def new
