@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#create'
     delete '/logout',  to: 'sessions#destroy'
 
-    #Sessios Omniauthable
+    #Sessions Omniauthable
     get '/auth/:provider/callback', to: 'sessions#create'
 
     #Trip routes

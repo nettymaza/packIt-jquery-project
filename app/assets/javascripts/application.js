@@ -12,6 +12,5 @@
 //
 //= require jquery.min.js
 //= require rails-ujs
-//= require turbolinks
-//= require_tree .
+//= require_tree 
 //= require trips

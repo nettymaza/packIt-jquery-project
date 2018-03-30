@@ -2,37 +2,36 @@
 
 <html class="no-js" lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <title>Pack it!</title>
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application'%>
+    <title>Pack it!</title>
 </head>
 
-  <body>
+<body>
     <div class="wrapper">
-      <div class="header">
-        <div class="logo">
+        <div class="header">
+            <div class="logo">
+            </div>
+            <div class="userInfo">
+            <% if logged_in? %>
+                <i><h4>@<%= link_to current_user.name, user_path(current_user.id) %></h4></i>
+            <% end %>
+            </div>
         </div>
-        <div class="userInfo">
-          <% if logged_in? %>
-            <i><h4>
-              Logged in as @<%= link_to current_user.name, user_path(current_user.id) %>
-            </h4></i>
-          <% end %>
-        </div>
-      </div>
 
-      <%= yield %>
+         <%= yield %>
 
-      <footer class="branding">
+        <footer class="branding">
         <div class="links">
-          <% if logged_in? %>
-            <%= link_to 'Back', 'javascript:history.back()' %> | <%= link_to "Log out", logout_path, method: :delete %>
-          <% end %>
+            <% if logged_in? %>
+                <%= link_to 'Back', 'javascript:history.back()' %> | <%= link_to "Log out", logout_path, method: :delete %>
+            <% end %>
         </div>
+
         <small>&copy; 2018 <strong>Pack-it!</strong></small>
-      </footer>
+        </footer>
     </div>
-  </body>
+</body>
 </html>
