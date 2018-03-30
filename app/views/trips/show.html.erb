@@ -1,27 +1,12 @@
 <div class="links">
-    <a href="#" class="js-next" data-id="<%=@trip.id%>">Next Trip</a>
+    <a href="/trips/<%= @trip.next_id %>" class="js-next">Next Trip</a>
 </div>
+
 
 <h1 class="tripName"><%= @trip.name %></h1>
 <h3 class="tripDuration"><%= @trip.duration %></h3>
 <h3 class="tripStartdate"><%= @trip.start_date %></p>
 
-<script type="text/javascript" charset="utf-8">
-
-$(function () {
-    $(".js-next").on("click", function() {
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-        $.get("/trips/" + nextId + ".json", function(data) {
-            var trip = data
-
-            $(".tripName").text(trip["name"]);
-            $(".tripDuration").text(trip["duration"]);
-            $(".tripStartdate").text(trip["start_date"]);
-        });
-    });
-});
-
-</script>
 
 
 <!-- <div class="">

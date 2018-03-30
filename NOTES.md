@@ -61,3 +61,16 @@ function renderTripsData(tripsData) {
     <a href="/trips/<%= trip.id %>/data.json"><%= trip.name %></a>
   <% end %>ra
 <% end %> -->
+
+
+$(function () {
+    $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+        $.get("/trips/" + nextId + ".json", function(data) {
+            var trip = data
+            $(".tripName").text(trip["name"]);
+            $(".tripDuration").text(trip["duration"]);
+            $(".tripStartdate").text(trip["start_date"]);
+        });
+    });
+});
