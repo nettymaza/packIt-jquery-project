@@ -53,11 +53,11 @@ function renderTripsData(tripsData) {
   })
 }
 
-
-if params[:status] == "Past"
-  @trips = Trip.complete.where(user: current_user)
-elsif params[:status] == "Upcoming"
-  @trips = Trip.incomplete.where(user: current_user)
-elsif params[:name]
-  @trips = Trip.by_name(params[:name]).where(user: current_user)
-end
+<!-- <br>
+<hr>
+<h3>Your other trips</h3>
+<% current_user.trips.each do |trip| %>
+  <% if trip != @trip %>
+    <a href="/trips/<%= trip.id %>/data.json"><%= trip.name %></a>
+  <% end %>ra
+<% end %> -->
