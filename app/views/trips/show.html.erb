@@ -9,17 +9,16 @@
 <script type="text/javascript" charset="utf-8">
 
 $(function () {
-  $(".js-next").on("click", function() {
+    $(".js-next").on("click", function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/trips/" + nextId + ".json", function(data) {
-        var trip = data
+        $.get("/trips/" + nextId + ".json", function(data) {
+            var trip = data
 
-        $(".tripName").text(trip["name"]);
-        $(".tripDuration").text(trip["duration"]);
-        $(".tripStartdate").text(trip["start_date"]);
-
+            $(".tripName").text(trip["name"]);
+            $(".tripDuration").text(trip["duration"]);
+            $(".tripStartdate").text(trip["start_date"]);
+        });
     });
-  });
 });
 
 </script>
@@ -45,17 +44,8 @@ $(function () {
     <%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
   <% end %>
 </div>
-<br>
+<br> -->
 
 <div class="">
   <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to "Delete", @trip, method: :delete %>
-</div> -->
-
-<!-- <br>
-<hr>
-<h3>Your other trips</h3>
-<% current_user.trips.each do |trip| %>
-  <% if trip != @trip %>
-    <a href="/trips/<%= trip.id %>/data.json"><%= trip.name %></a>
-  <% end %>
-<% end %> -->
+</div>
