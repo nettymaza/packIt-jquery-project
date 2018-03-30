@@ -5,7 +5,7 @@ $(document).ready(function () {
 function getTripsData(e) {
     e.preventDefault()
     $('#trips-container').html('')
-    $.get(this.href, function(tripsData) {
+    $.getJSON(this.href, function(tripsData) {
         renderTripsData(tripsData)
     })
 }
