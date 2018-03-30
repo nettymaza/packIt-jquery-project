@@ -31,12 +31,12 @@ class Trip < ApplicationRecord
     self.status == STATUS[:incomplete]
   end
 
-  def next
+  def next_id
       trip = Trip.where("id > ?", id).first
       if trip
-          trip
+          trip.id
       else
-          Trip.first
+          Trip.first.id
       end
   end
 

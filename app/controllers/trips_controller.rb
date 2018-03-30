@@ -24,10 +24,13 @@ class TripsController < ApplicationController
         end
     end
 
-    # def trip_data
-    #     @trip = Trip.find(params[:id])
-    #     render json: @trip.to_json(only: [:id, :name, :duration, :start_date])
+    # def next
     # end
+
+    def trip_data
+        @trip = Trip.find(params[:id])
+        render json: @trip.to_json(only: [:id, :name, :duration, :start_date])
+    end
 
     def new
         @trip = Trip.new
