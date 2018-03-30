@@ -1,4 +1,4 @@
-class Trip < ApplicationRecord  
+class Trip < ApplicationRecord
   belongs_to :user
   has_many :packing_lists
   has_many :items, through: :packing_lists, :dependent => :destroy
@@ -29,6 +29,15 @@ class Trip < ApplicationRecord
 
   def incomplete?
     self.status == STATUS[:incomplete]
+  end
+
+  def next
+      trip = Trip.where("id > ?", id).first
+      if trip
+          trip
+      else
+          Trip.first
+      end
   end
 
  #Active Record Model Class Methods
