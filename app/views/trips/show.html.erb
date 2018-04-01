@@ -7,6 +7,22 @@
 <h3 class="tripDuration"><%= @trip.duration %></h3>
 <h3 class="tripStartdate"><%= @trip.start_date %></p>
 
+<h2>Packing List</h2>
+
+<% if @trip.items.count > 0 %>
+  <ul>
+    <% @trip.items.each do |item| %>
+      <li><%= item.name %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_for @item, :url => trip_items_path(@trip) do |f| %>
+<%= f.text_area :name %>
+<p><%= f.submit %></p>
+<% end %>
+
 
 
 <!-- <div class="">

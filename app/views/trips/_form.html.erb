@@ -20,7 +20,7 @@
     <!-- <div class="field">
       <h3>Packing List</h3>
       <h5><i>Add Items to List</i></h5>
-      <% 5.times.each do %>
+      <% 1.times.each do %>
         <%= f.fields_for :items, trip.items.build do |trip_fields| %>
           <%= trip_fields.text_field :name %><br>
         <% end %>

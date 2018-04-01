@@ -40,6 +40,7 @@ class Trip < ApplicationRecord
       end
   end
 
+
  #Active Record Model Class Methods
 
    def self.complete
