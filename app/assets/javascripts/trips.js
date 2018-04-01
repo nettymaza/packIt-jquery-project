@@ -1,11 +1,12 @@
 $(document).ready(function () {
-  // $("a.load_trips").on("click", getTripsData)
   getTripsData()
   showTrip()
+  getNextTrip()
 })
 
 function getTripsData() {
     $("a.load_trips").on("click", function(e) {
+        // history.pushState(null, null, "trips")
         e.preventDefault()
         $('#trips-container').html('')
         $.getJSON(this.href, function(tripsData) {
@@ -43,21 +44,34 @@ function showTrip() {
         e.preventDefault()
         $('#trips-container').html('')
         let id = $(this).attr('data-id')
-        $.getJSON(`/trips/${id}.json`, function(showTrip) {
-            let newTrip = new Trip(showTrip)
-            let tripHtml = newTrip.showTemplate()
-            $('#trips-container').append(tripHtml)
-
-        })
+        $.getJSON(`/trips/${id}.json`, renderTrip)
     })
 }
 
+function renderTrip(tripData) {
+    console.log(tripData)
+    let newTrip = new Trip(tripData)
+    let tripHtml = newTrip.showTemplate()
+    $('#trips-container').html(tripHtml)
+}
 
 Trip.prototype.showTemplate = function() {
     let tripHtml = `
     <h1>${ this.name }</h1>
     <h3>${ this.duration }</h3>
     <h3>${ this.start_date }</p>
+
+    <button class="next-post" data-id="${ this.id }">Next</button>
     `
     return tripHtml
+}
+
+function getNextTrip() {
+    $(document).on('click', '.next-post', function(e) {
+        e.preventDefault()
+        let id = $(this).attr('data-id')
+        $.getJSON(`/trips/${id}/next`, function(tripData){
+            renderTrip(tripData)
+        })
+    })
 }

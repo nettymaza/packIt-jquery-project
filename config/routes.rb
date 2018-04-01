@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
     #Trip routes
     resources :trips
-    get 'trips/:id/trip_data', to: 'trips#trip_data'
-    
+
+
+    get 'trips/:id/next', to: 'trips#next'
 end
