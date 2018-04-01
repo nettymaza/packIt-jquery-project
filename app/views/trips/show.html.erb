@@ -2,10 +2,15 @@
     <a href="/trips/<%= @trip.next_id %>" class="js-next">Next Trip</a>
 </div>
 
-
 <h1 class="tripName"><%= @trip.name %></h1>
 <h3 class="tripDuration"><%= @trip.duration %></h3>
 <h3 class="tripStartdate"><%= @trip.start_date %></p>
+
+<div class="">
+  <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to "Delete", @trip, method: :delete %>
+</div>
+
+<br>
 
 <h2>Packing List</h2>
 
@@ -15,38 +20,28 @@
       <li><%= item.name %> </li>
     <% end %>
   </ul>
+ <% else %>
+     <h5><i>Add Items to List</i></h5>
 <% end %>
-
-
-<%= form_for @item, :url => trip_items_path(@trip) do |f| %>
-<%= f.text_area :name %>
-<p><%= f.submit %></p>
-<% end %>
-
-
-
-<!-- <div class="">
-  <h2>Packing List</h2>
-
-  <% if @trip.items.count > 0 %>
-    <ul>
-      <% @trip.items.each do |item| %>
-        <li><%= item.name %> </li>
-      <% end %>
-    </ul>
-  <% end %>
-</div>
 
 <br>
+
+<%= form_for ([current_user, @trip]) do |f| %>
+    <div class="field">
+      <% 1.times.each do %>
+        <%= f.fields_for :items, @trip.items.build do |trip_fields| %>
+          <%= trip_fields.text_field :name %><br>
+        <% end %>
+      <% end %>
+    </div>
+    <%= f.submit 'Add Item' %>
+<% end %>
+
+<!-- <br>
 
 <div class="">
   <%= form_for ([current_user, @trip]) do |f| %>
     <h4><%= f.label "Is this Trip Complete?" %></h4>
     <%= f.check_box :status, options = {:onChange => "javascript: this.form.submit();"}, checked_value = "1", unchecked_value = "0" %>
   <% end %>
-</div>
-<br> -->
-
-<div class="">
-  <%= link_to 'Edit', edit_trip_path(@trip) %> | <%= link_to "Delete", @trip, method: :delete %>
-</div>
+</div> -->
