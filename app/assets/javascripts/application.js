@@ -12,5 +12,6 @@
 //
 //= require jquery.min.js
 //= require rails-ujs
-//= require_tree 
+//= require_tree
+//= require users
 //= require trips

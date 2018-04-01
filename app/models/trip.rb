@@ -17,7 +17,6 @@ class Trip < ApplicationRecord
     end
   end
 
-
   STATUS = {
     :incomplete => 0,
     :complete => 1
