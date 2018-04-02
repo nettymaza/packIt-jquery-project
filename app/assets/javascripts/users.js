@@ -1,3 +1,5 @@
+// Loading Trips Index via Ajax on User's show page
+
 $(document).ready(function () {
   getTripsData()
   showTrip()
@@ -39,6 +41,9 @@ Trip.prototype.indexTemplate = function() {
     return tripHtml
 }
 
+
+// Loading Trip Show page via Ajax on User's show page
+
 function showTrip() {
     $(document).on('click', '.show_link', function(e) {
         e.preventDefault()
@@ -64,6 +69,8 @@ Trip.prototype.showTemplate = function() {
     `
     return tripHtml
 }
+
+// Next trip button functionality to load Next Trip via Ajax
 
 function getNextTrip() {
     $(document).on('click', '.next-post', function(e) {

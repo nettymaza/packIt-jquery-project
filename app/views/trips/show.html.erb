@@ -14,28 +14,29 @@
 
 <h2>Packing List</h2>
 
-<% if @trip.items.count > 0 %>
-  <ul>
-    <% @trip.items.each do |item| %>
-      <li><%= item.name %> </li>
+<ul class="tripItems">
+    <% if @trip.items.count > 0 %>
+        <% @trip.items.each do |item| %>
+          <li><%= item.name %> </li>
+        <% end %>
+     <% else %>
+         <li>Add Items to List</li>
     <% end %>
-  </ul>
- <% else %>
-     <h5><i>Add Items to List</i></h5>
-<% end %>
+</ul>
 
 <br>
 
-<%= form_for ([current_user, @trip]) do |f| %>
-    <div class="field">
+<%= form_for @trip do |f| %>
       <% 1.times.each do %>
         <%= f.fields_for :items, @trip.items.build do |trip_fields| %>
           <%= trip_fields.text_field :name %><br>
         <% end %>
       <% end %>
-    </div>
     <%= f.submit 'Add Item' %>
 <% end %>
+
+<!-- action="/users/1/trips/3" -->
+
 
 <!-- <br>
 

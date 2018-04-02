@@ -11,6 +11,7 @@ class TripsController < ApplicationController
 
     def show
         @item = @trip.items.build
+
         respond_to do |format|
             format.html { render :show }
             format.json { render json: @trip}
@@ -43,9 +44,7 @@ class TripsController < ApplicationController
 
     def update
         if @trip.update(trip_params)
-            redirect_to trip_path(@trip)
-        else
-            render 'edit'
+            render json: @trip
         end
     end
 
