@@ -3,7 +3,8 @@
 
 $(document).ready(function () {
     $(".edit_trip").submit(function(e) {
-        console.log(e)
+        // Need url to submit the POST request to
+        // Need form data
 
         $.ajax({
             method: 'POST',
@@ -26,6 +27,3 @@ function renderPackingListItems(trip) {
     $('.tripItems').html(itemsHtml)
     $('.edit_trip').find('input[type="text"]').val('')
 }
-
-// Need url to submit the POST request to
-// Need form data

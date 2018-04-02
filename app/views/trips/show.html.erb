@@ -32,11 +32,8 @@
           <%= trip_fields.text_field :name %><br>
         <% end %>
       <% end %>
-    <%= f.submit 'Add Item' %>
+    <%= f.submit 'Add Item', data: {disable_with: false} %>
 <% end %>
-
-<!-- action="/users/1/trips/3" -->
-
 
 <!-- <br>
 
