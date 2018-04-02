@@ -1,6 +1,5 @@
 // Submit Packing List items on Trips show page via Ajax
 
-
 $(document).ready(function () {
     $(".edit_trip").submit(function(e) {
         // Need url to submit the POST request to

@@ -8,7 +8,10 @@
 
 <div class="links">
   <div class="">
-    <%= link_to "View Trips", user_trips_path(current_user.id), :class => "load_trips" %>
+    <%= link_to "Load Trips", user_trips_path(current_user.id), :class => "load_trips" %>
+  </div>
+  <div class="">
+     <%= link_to "Trip Details", user_trips_path(current_user.id) %>
   </div>
   <div class="">
     <%= link_to "Add Trip", new_user_trip_path(current_user.id) %>
