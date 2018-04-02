@@ -1,4 +1,4 @@
-# Pack-it!
+# Rails Pack-it with JQuery Front-end!
 
 Pack-it is app intended to help you manage your trips. Once you sign up for an account, you can create trips, add items to your packing list and when finished mark a specific trip as complete. Your Trips page allows you the option of filtering which trips your are viewing by "Past" and "Upcoming".
 
@@ -30,7 +30,7 @@ To seed data:
 
 ## Running Application
 
-To run this application run `rails server` from the command line, open browser and type localhost:0000 and use port of choice. 
+To run this application run `rails server` from the command line, open browser and type localhost:0000 and use port of choice.
 
 ## Contributing
 
