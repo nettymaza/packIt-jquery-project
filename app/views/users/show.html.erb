@@ -16,4 +16,7 @@
   <div class="">
     <%= link_to "Add Trip", new_user_trip_path(current_user.id) %>
   </div>
+  <div class="">
+    <%= link_to "Filter Trips", user_trips_path(current_user.id), :class => "filter_trips" %>
+  </div>
 </div>

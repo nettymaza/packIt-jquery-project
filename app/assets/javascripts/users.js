@@ -4,6 +4,7 @@ $(document).ready(function () {
   getTripsData()
   showTrip()
   getNextTrip()
+  filterTrip()
 })
 
 function getTripsData() {
@@ -71,7 +72,7 @@ Trip.prototype.showTemplate = function() {
 }
 
 // Next trip button functionality to load Next Trip via Ajax
-
+// window.history.pushState(null, "/trips/2")
 function getNextTrip() {
     $(document).on('click', '.next-post', function(e) {
         e.preventDefault()
@@ -80,4 +81,19 @@ function getNextTrip() {
             renderTrip(tripData)
         })
     })
+}
+
+function filterTrip() {
+  $("a.filter_trips").on("click", function(e) {
+    e.preventDefault()
+    $('#trips-container').html('')
+    $.getJSON(this.href, function(data){
+      getFilteredData(data)
+    })
+  })
+}
+
+function getFilteredData(data) {
+   const filteredTrips = data.filter(trip => trip.items.length < 10)
+   renderTripsData(filteredTrips)
 }
